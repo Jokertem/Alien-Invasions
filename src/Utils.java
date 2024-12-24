@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Utils {
     public static Dimension frameSize = new Dimension(1200, 650);
     public static ArrayList<PMissile> missiles = new ArrayList<PMissile>();
+    public static ArrayList<OMissle> oMissles = new ArrayList<OMissle>();
     public static ArrayList<Oponent> oponents = new ArrayList<>();
     public static boolean start = false;
     public static boolean pauza = false;
@@ -24,9 +25,9 @@ public class Utils {
                 }
             }
 
-
         }
-        System.out.println(oponents);
+
+        System.out.println(level);
 
     }
 }

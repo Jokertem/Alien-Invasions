@@ -27,6 +27,8 @@ public class MyComponent extends JComponent {
                         Star.updatePoss(stars);
                         player.movement();
                         PMissile.movement();
+                        PMissile.collisons();
+                        OMissle.drop();
                         if (Utils.start && Utils.oponents.isEmpty()) Utils.changeLVL();
                         for (int j = 0; j < Utils.oponents.size(); j++) {
                             Oponent oponent = Utils.oponents.get(j);
@@ -48,12 +50,14 @@ public class MyComponent extends JComponent {
         Graphics2D graphics2D = (Graphics2D) g;
         if (Utils.start) {
             graphics2D.setPaint(Color.WHITE);
-            //Star.getShape(stars, graphics2D);
+            Star.getShape(stars, graphics2D);
             graphics2D.setPaint(Color.GREEN);
             graphics2D.fill(player.getShape());
             PMissile.getShape(graphics2D);
             graphics2D.setPaint(Color.RED);
             for (Oponent oponent : Utils.oponents) graphics2D.fill(oponent.getShape());
+            graphics2D.setPaint(Color.red);
+            OMissle.getShape(graphics2D);
         } else if (!Utils.start) {
             graphics2D.setPaint(Color.white);
             Star.getShape(stars, graphics2D);

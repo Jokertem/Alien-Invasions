@@ -20,5 +20,6 @@ public class MyFrame extends JFrame {
 
         MyFrame frame = new MyFrame();
         frame.setVisible(true);
+
     }
 }
