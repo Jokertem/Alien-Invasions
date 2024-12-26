@@ -7,18 +7,19 @@ import java.util.Random;
 
 public class MyComponent extends JComponent {
     ArrayList<Star> stars = new ArrayList<>();
-    private int starsCount = 10;
     Random rnd = new Random();
     private final Player player = Player.getPlayer();
 
 
     public MyComponent() {
 
+        int starsCount = 15;
         for (int i = 0; i < starsCount; i++) {
             int randomX = rnd.nextInt(Utils.frameSize.width);
             int randomY = rnd.nextInt(Utils.frameSize.height);
             stars.add(new Star(randomX, randomY));
 
+        }
 
             Timer timer = new Timer(25, new ActionListener() {
                 @Override
@@ -40,13 +41,13 @@ public class MyComponent extends JComponent {
 
             });
             timer.start();
-        }
+
 
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        Toolkit.getDefaultToolkit().sync();
+        //Toolkit.getDefaultToolkit().sync();
         Graphics2D graphics2D = (Graphics2D) g;
         if (Utils.start) {
             graphics2D.setPaint(Color.WHITE);

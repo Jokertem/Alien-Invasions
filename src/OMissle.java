@@ -10,7 +10,7 @@ public class OMissle extends PMissile {
 
     @Override
     public int getSpeed() {
-        return 1;
+        return 10;
     }
 
     @Override

@@ -1,11 +1,10 @@
 import java.awt.*;
-import java.util.Collection;
-import java.util.stream.IntStream;
+
 
 public class PMissile {
     private int x;
     private int y;
-    private final int speed = 5;
+    private final int speed = 15;
     private final Dimension size = new Dimension(10, 30);
 
     public PMissile(int x, int y) {
@@ -73,5 +72,5 @@ public class PMissile {
 
     }
 
-    ;
+
 }

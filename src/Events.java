@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -24,10 +23,9 @@ public class Events implements KeyListener {
             case KeyEvent.VK_LEFT -> player.setLeft(true);
 
 
-            case KeyEvent.VK_RIGHT -> {
-                player.setRight(true);
+            case KeyEvent.VK_RIGHT -> player.setRight(true);
 
-            }
+
             case KeyEvent.VK_SPACE -> {
                 if (!Utils.pauza) {
                     PMissile pMissile = new PMissile(player.getX() + player.size.width / 2, player.getY());
@@ -36,6 +34,7 @@ public class Events implements KeyListener {
             }
             case KeyEvent.VK_F1 -> Utils.start = true;
             case KeyEvent.VK_P -> Utils.pauza = !Utils.pauza;
+            case  KeyEvent.VK_ESCAPE -> System.exit(0);
 
 
         }
@@ -50,10 +49,9 @@ public class Events implements KeyListener {
             case KeyEvent.VK_LEFT -> player.setLeft(false);
 
 
-            case KeyEvent.VK_RIGHT -> {
-                player.setRight(false);
+            case KeyEvent.VK_RIGHT -> player.setRight(false);
 
-            }
+
         }
 
 

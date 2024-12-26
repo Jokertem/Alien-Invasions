@@ -19,7 +19,7 @@ public class Player {
     }
 
     public int getSpeed() {
-        return 2;
+        return 12;
     }
 
     private boolean left = false;
@@ -71,7 +71,7 @@ public class Player {
     public void movement() {
 
         if (x < 0) x = 0;
-        if (x + size.width >= Utils.frameSize.width - 17) x = Utils.frameSize.width - size.width - 17;
+        if (x + size.width >= Utils.frameSize.width ) x = Utils.frameSize.width - size.width;
 
 
         if (left) x -= getSpeed();
