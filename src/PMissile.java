@@ -6,6 +6,7 @@ public class PMissile {
     private int y;
     private final int speed = 15;
     private final Dimension size = new Dimension(10, 30);
+    private static final Player player = Player.getPlayer();
 
     public PMissile(int x, int y) {
         this.x = x;
@@ -58,6 +59,9 @@ public class PMissile {
                 if (missile.x + missile.size.width > oponent.getX() && missile.x < oponent.getX() + oponent.getSize().width && missile.y + missile.size.height > oponent.getY() && missile.y < oponent.getY() + oponent.getSize().height) {
                     Utils.missiles.remove(i);
                     Utils.oponents.remove(j);
+                    player.setScore(player.getScore()+oponent.getScoreValue());
+
+
 
                 }
             }

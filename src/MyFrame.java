@@ -15,6 +15,7 @@ public class MyFrame extends JFrame {
         add(component);
         getContentPane().setBackground(Color.BLACK);
         addKeyListener(new Events(component));
+        addWindowListener(new WindowEvent());
 
     }
 

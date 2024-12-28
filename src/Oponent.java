@@ -5,6 +5,11 @@ public class Oponent {
     private int x;
     private int y;
     private Directions move;
+    private  final int scoreValue=5;
+
+    public int getScoreValue() {
+        return scoreValue;
+    }
 
     public Oponent(int x, int y, Directions move) {
         this.x = x;

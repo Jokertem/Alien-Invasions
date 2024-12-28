@@ -25,7 +25,8 @@ public class OMissle extends PMissile {
                 Utils.oMissles.remove(i);
 
             }
-                oMissile.setY(oMissile.getY()+ oMissile.getSpeed());
+            oMissile.setY(oMissile.getY() + oMissile.getSpeed());
+
         }
     }
 

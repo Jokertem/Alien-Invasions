@@ -36,6 +36,7 @@ public class Player {
     private int score = 0;
     private int lives = 3;
 
+
     public int getScore() {
         return score;
     }
@@ -71,11 +72,21 @@ public class Player {
     public void movement() {
 
         if (x < 0) x = 0;
-        if (x + size.width >= Utils.frameSize.width ) x = Utils.frameSize.width - size.width;
+        if (x + size.width >= Utils.frameSize.width) x = Utils.frameSize.width - size.width;
 
 
         if (left) x -= getSpeed();
         if (right) x += getSpeed();
+
+        //Colisions with oponent missles
+        for (int i = 0; i < Utils.oMissles.size(); i++) {
+            OMissle oMissle = Utils.oMissles.get(i);
+            if (x + size.width > oMissle.getX() && x < oMissle.getX() + oMissle.getSize().width && y + size.height > oMissle.getY() && y < oMissle.getY() + oMissle.getSize().height) {
+                x = Utils.frameSize.width / 2 - w / 2;
+                Utils.missiles.clear();
+                Utils.oMissles.clear();
+            }
+        }
 
     }
 
