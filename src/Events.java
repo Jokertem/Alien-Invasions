@@ -28,8 +28,12 @@ public class Events implements KeyListener {
 
             case KeyEvent.VK_SPACE -> {
                 if (!Utils.pauza) {
+                    if (player.getShot() <=0){
                     PMissile pMissile = new PMissile(player.getX() + player.size.width / 2, player.getY()-player.size.height);
                     Utils.missiles.add(pMissile);
+                    player.setShot(Utils.shotDelay);
+
+                    }
                 }
             }
             case KeyEvent.VK_F1 -> Utils.start = true;

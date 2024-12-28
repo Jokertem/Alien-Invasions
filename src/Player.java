@@ -57,7 +57,15 @@ public class Player {
     private static final int h = 20;
     public Dimension size;
     private static final Player player = new Player(Utils.frameSize.width / 2 - w / 2, Utils.frameSize.height - 90 - h);
+    private float shot = 0;
 
+    public float getShot() {
+        return shot;
+    }
+
+    public void setShot(float shot) {
+        this.shot = shot;
+    }
 
     private Player(int x, int y) {
         this.x = x;

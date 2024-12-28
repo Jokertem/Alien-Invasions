@@ -12,6 +12,9 @@ public class Utils {
     public static boolean pauza = false;
     public static int level = 0;
     public static int maxLevel = 5;
+    public static float shotDelay=0.1F;
+
+
 
     public static void changeLVL() {
         missiles.clear();
