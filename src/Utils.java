@@ -6,18 +6,21 @@ public class Utils {
     private static final Dimension screenSieze = scren.getScreenSize();
     public static Dimension frameSize = new Dimension(screenSieze);
     public static ArrayList<PMissile> missiles = new ArrayList<>();
+    public static ArrayList<PMissile> missiles2 = new ArrayList<>();
     public static ArrayList<OMissle> oMissles = new ArrayList<>();
     public static ArrayList<Oponent> oponents = new ArrayList<>();
     public static boolean start = false;
     public static boolean pauza = false;
+    public static boolean gameOver = false;
+    public static boolean twoPlayers = false;
     public static int level = 0;
     public static int maxLevel = 5;
-    public static float shotDelay=0.1F;
-
+    public static float shotDelay = 0.1F;
 
 
     public static void changeLVL() {
         missiles.clear();
+        missiles2.clear();
         oMissles.clear();
         level++;
         if (level > maxLevel) level = 1;
@@ -40,23 +43,27 @@ public class Utils {
 
             for (int i = 1; i < rows + 1; i++) {
 
-                oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 + 100 - 100 * i, 50, Directions.LEFT));
+                oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 + 100 - 100 * i,
+                        50, Directions.LEFT));
 
-                oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 - 100 + 100 * i, 50, Directions.LEFT));
+                oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 - 100 + 100 * i,
+                        50, Directions.LEFT));
 
-                oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 + 100 - 100 * i, 250, Directions.RIGHT));
+                oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 + 100 - 100 * i,
+                        250, Directions.RIGHT));
 
-                oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 - 100 + 100 * i, 250, Directions.RIGHT));
+                oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 - 100 + 100 * i,
+                        250, Directions.RIGHT));
 
 
             }
-            System.out.println(oponents.size());
+
             oponents.add(new Oponent(oponents.getLast().getX(), 150, Directions.UP));
             oponents.add(new Oponent(oponents.get(18).getX(), 150, Directions.DOWN));
-            System.out.println(oponents.getLast().getX());
+
 
         }
-        //System.out.println(level);
+
         if (level > maxLevel) level = 1;
     }
 }

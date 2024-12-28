@@ -7,6 +7,7 @@ public class PMissile {
     private final int speed = 15;
     private final Dimension size = new Dimension(10, 30);
     private static final Player player = Player.getPlayer();
+    private static final Player player2 = Player.getPlayer2();
 
     public PMissile(int x, int y) {
         this.x = x;
@@ -48,6 +49,13 @@ public class PMissile {
 
 
         }
+        for (int i = 0; i < Utils.missiles2.size(); i++) {
+            PMissile pMissile = Utils.missiles2.get(i);
+            if (pMissile.y < 0) Utils.missiles2.remove(i);
+            pMissile.y -= pMissile.speed;
+
+
+        }
     }
 
     public static void collisons() {
@@ -59,8 +67,20 @@ public class PMissile {
                 if (missile.x + missile.size.width > oponent.getX() && missile.x < oponent.getX() + oponent.getSize().width && missile.y + missile.size.height > oponent.getY() && missile.y < oponent.getY() + oponent.getSize().height) {
                     Utils.missiles.remove(i);
                     Utils.oponents.remove(j);
-                    player.setScore(player.getScore()+oponent.getScoreValue());
+                    player.setScore(player.getScore() + oponent.getScoreValue());
 
+
+                }
+            }
+        }
+        for (int i = 0; i < Utils.missiles2.size(); i++) {
+            PMissile missile = Utils.missiles2.get(i);
+            for (int j = 0; j < Utils.oponents.size(); j++) {
+                Oponent oponent = Utils.oponents.get(j);
+                if (missile.x + missile.size.width > oponent.getX() && missile.x < oponent.getX() + oponent.getSize().width && missile.y + missile.size.height > oponent.getY() && missile.y < oponent.getY() + oponent.getSize().height) {
+                    Utils.missiles2.remove(i);
+                    Utils.oponents.remove(j);
+                    player2.setScore(player2.getScore() + oponent.getScoreValue());
 
 
                 }
@@ -70,6 +90,12 @@ public class PMissile {
 
     public static void getShape(Graphics2D graphics2D) {
         for (PMissile pMissile : Utils.missiles) {
+
+            Rectangle rectangle = new Rectangle(pMissile.x, pMissile.y, pMissile.size.width, pMissile.size.height);
+            graphics2D.fill(rectangle);
+        }
+        for (PMissile pMissile : Utils.missiles2) {
+
             Rectangle rectangle = new Rectangle(pMissile.x, pMissile.y, pMissile.size.width, pMissile.size.height);
             graphics2D.fill(rectangle);
         }
