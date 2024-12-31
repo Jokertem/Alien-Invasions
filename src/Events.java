@@ -49,9 +49,29 @@ public class Events implements KeyListener {
                     }
                 }
             }
-            case KeyEvent.VK_F1 -> Utils.start = true;
+            case KeyEvent.VK_F1 -> {
+                if (!Utils.gameOver) Utils.start =true;
+                else {
+                    Utils.gameOver = false;
+                    if (!Utils.twoPlayers) player.setX(Utils.frameSize.width/2-player.size.width/2);
+                    else {
+                        player.setX(Utils.frameSize.width/2-player.size.width/2+90);
+                        player2.setX(Utils.frameSize.width/2-player.size.width/2-90);
+                    }
+                    player.setLives(3);
+                    player2.setLives(3);
+                    player.setScore(0);
+                    player2.setScore(0);
+                    Utils.missiles.clear();
+                    Utils.missiles2.clear();
+                    Utils.oponents.clear();
+                    Utils.level =0;
+                    Utils.changeLVL();
+                }
+            }
             case KeyEvent.VK_F2 -> {
                 if (!Utils.start) player.setX(player.getX() + 90);
+                else player2.setX(player.getX());
                 Utils.twoPlayers = true;
                 Utils.start = true;
             }

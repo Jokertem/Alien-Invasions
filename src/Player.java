@@ -1,6 +1,12 @@
 import java.awt.*;
 
 public class Player {
+    private Player(int x, int y) {
+        this.x = x;
+        this.y = y;
+        size = new Dimension(w, h);
+    }
+
     private int x;
 
     public int getX() {
@@ -12,10 +18,14 @@ public class Player {
     }
 
 
-    private final int y;
+    private int y;
 
     public int getY() {
         return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getSpeed() {
@@ -34,7 +44,6 @@ public class Player {
 
     private boolean right = false;
     private int score = 0;
-    private int lives = 3;
 
 
     public int getScore() {
@@ -44,6 +53,8 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
+
+    private int lives = 3;
 
     public int getLives() {
         return lives;
@@ -67,12 +78,6 @@ public class Player {
 
     public void setShot(float shot) {
         this.shot = shot;
-    }
-
-    private Player(int x, int y) {
-        this.x = x;
-        this.y = y;
-        size = new Dimension(w, h);
     }
 
     public static Player getPlayer() {
@@ -105,24 +110,27 @@ public class Player {
                 if (!Utils.twoPlayers) {
                     player.x = Utils.frameSize.width / 2 - w / 2;
                 } else {
-                    player.x = Utils.frameSize.width / 2 - w / 2 + 90;
-                    player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
+                    if (player.lives >0) player.x = Utils.frameSize.width / 2 - w / 2 + 90;
+                    if (player2.lives >0) player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
                 }
 
             }
         }
-        for (int i = 0; i < Utils.oMissles.size(); i++) {
-            OMissle oMissle = Utils.oMissles.get(i);
-            if (player2.x + player2.size.width > oMissle.getX() && player2.x < oMissle.getX() + oMissle.getSize().width && player2.y + player2.size.height >
-                    oMissle.getY() && player2.y < oMissle.getY() + oMissle.getSize().height) {
-                Utils.missiles.clear();
-                Utils.missiles2.clear();
-                Utils.oMissles.clear();
-                player2.lives--;
-                player.x = Utils.frameSize.width / 2 - w / 2 + 90;
-                player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
+        if (Utils.twoPlayers) {
+            for (int i = 0; i < Utils.oMissles.size(); i++) {
+                OMissle oMissle = Utils.oMissles.get(i);
+                if (player2.x + player2.size.width > oMissle.getX() && player2.x < oMissle.getX() + oMissle.getSize().width && player2.y + player2.size.height >
+                        oMissle.getY() && player2.y < oMissle.getY() + oMissle.getSize().height) {
+                    Utils.missiles.clear();
+                    Utils.missiles2.clear();
+                    Utils.oMissles.clear();
+                    player2.lives--;
+                    player.x = Utils.frameSize.width / 2 - w / 2 + 90;
+                    player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
 
+                }
             }
+
         }
 
     }
