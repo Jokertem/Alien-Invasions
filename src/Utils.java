@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
+
 public class Utils {
     private static final Toolkit scren = Toolkit.getDefaultToolkit();
     private static final Dimension screenSieze = scren.getScreenSize();
@@ -9,6 +10,7 @@ public class Utils {
     public static ArrayList<PMissile> missiles2 = new ArrayList<>();
     public static ArrayList<OMissle> oMissles = new ArrayList<>();
     public static ArrayList<Oponent> oponents = new ArrayList<>();
+    public static ArrayList<Rock> rocks = new ArrayList<>();
     public static boolean start = false;
     public static boolean pauza = false;
     public static boolean gameOver = false;
@@ -16,14 +18,19 @@ public class Utils {
     public static int level = 0;
     public static int maxLevel = 5;
     public static float shotDelay = 0.1F;
+    public static int rock = 0;
+    public static int rockMax = 10;
 
 
     public static void changeLVL() {
         missiles.clear();
         missiles2.clear();
         oMissles.clear();
+        rocks.clear();
+        rock = 0;
         level++;
         if (level > maxLevel) level = 1;
+
         if (level == 1) {
             int rows = 8;
             int columns = 4;
@@ -63,6 +70,7 @@ public class Utils {
 
 
         }
+
 
         if (level > maxLevel) level = 1;
     }

@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -47,7 +46,9 @@ public class MyComponent extends JComponent {
                     PMissile.movement();
                     PMissile.collisons();
                     OMissle.drop();
-                    if (Utils.start && Utils.oponents.isEmpty()) Utils.changeLVL();
+                    Utils.rocks.forEach(Rock::movement);
+                    if (Utils.start && Utils.oponents.isEmpty() && Utils.level != 3) Utils.changeLVL();
+
                     for (int j = 0; j < Utils.oponents.size(); j++) {
                         Oponent oponent = Utils.oponents.get(j);
                         oponent.movement();
@@ -57,9 +58,27 @@ public class MyComponent extends JComponent {
 
                     } else {
                         if (player.getLives() <= 0 && player2.getLives() <= 0) Utils.gameOver = true;
-                        if (player.getLives() <= 0) player.setX(Utils.frameSize.width + 1000);
-                        if (player2.getLives() <= 0) player2.setX(Utils.frameSize.width + 1000);
+                        if (player.getLives() <= 0) player.setX(Utils.frameSize.width + 10000);
+                        if (player2.getLives() <= 0) player2.setX(Utils.frameSize.width + 10000);
 
+
+                    }
+                    if (Utils.level == 3) {
+                        if (Utils.rock >= 10) Utils.level++;
+                        if (Utils.rocks.size() < Utils.rockMax) {
+                            int size = rnd.nextInt(4);
+                            switch (size) {
+                                case 1 -> Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 3, 64,10 ));
+                                case 2 -> Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 5, 128,20 ));
+                                case 3 -> Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 8, 162,30 ));
+
+                            }
+
+
+
+
+
+                        }
 
                     }
                 }
@@ -93,8 +112,10 @@ public class MyComponent extends JComponent {
             FontMetrics metrics = g.getFontMetrics(font);
             int textWidth = metrics.stringWidth(pl1Score);
             graphics2D.drawString(pl1Score, Utils.frameSize.width - 50 - textWidth, Utils.frameSize.height - 90);
-
             graphics2D.setPaint(Color.RED);
+            Utils.rocks.forEach(rock ->{graphics2D.drawImage(rock.getShape().getImage(),rock.getX()
+                    ,rock.getY(),rock.getX()+rock.getSize(),
+                    rock.getY()+rock.getSize(),30,250,250,500,null);});
 
             heart.draw(graphics2D);
             for (Oponent oponent : Utils.oponents) graphics2D.fill(oponent.getShape());
@@ -133,11 +154,14 @@ public class MyComponent extends JComponent {
             graphics2D.setPaint(Color.BLUE);
             String text = "Game Over";
             String text2 = "Press F1 to new Game";
+            String text3 = "Press Esc to Exit";
             FontMetrics metrics = g.getFontMetrics();
             int textWidth = metrics.stringWidth(text);
             int text2Width = metrics.stringWidth(text2);
-            graphics2D.drawString(text, Utils.frameSize.width / 2 - textWidth / 2, Utils.frameSize.height / 2);
-            graphics2D.drawString(text2, Utils.frameSize.width / 2 - text2Width / 2, Utils.frameSize.height / 2+40);
+            int text3Width = metrics.stringWidth(text3);
+            graphics2D.drawString(text, Utils.frameSize.width / 2 - textWidth / 2, Utils.frameSize.height / 2 - 20);
+            graphics2D.drawString(text2, Utils.frameSize.width / 2 - text2Width / 2, Utils.frameSize.height / 2 + 20);
+            graphics2D.drawString(text3, Utils.frameSize.width / 2 - text3Width / 2, Utils.frameSize.height / 2 + 60);
             Font fontScore = new Font("Arial", Font.PLAIN, 18);
             String pl1Score = "Player One Score:" + player.getScore();
             String pl2Score = "Player Two Score:" + player2.getScore();

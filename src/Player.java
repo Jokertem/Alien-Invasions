@@ -110,8 +110,8 @@ public class Player {
                 if (!Utils.twoPlayers) {
                     player.x = Utils.frameSize.width / 2 - w / 2;
                 } else {
-                    if (player.lives >0) player.x = Utils.frameSize.width / 2 - w / 2 + 90;
-                    if (player2.lives >0) player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
+                    if (player.lives > 0) player.x = Utils.frameSize.width / 2 - w / 2 + 90;
+                    if (player2.lives > 0) player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
                 }
 
             }
@@ -124,6 +124,43 @@ public class Player {
                     Utils.missiles.clear();
                     Utils.missiles2.clear();
                     Utils.oMissles.clear();
+                    player2.lives--;
+                    player.x = Utils.frameSize.width / 2 - w / 2 + 90;
+                    player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
+
+
+                }
+            }
+
+        }
+        //Colisions with oponent rocks
+        for (int i = 0; i < Utils.rocks.size(); i++) {
+            Rock rock = Utils.rocks.get(i);
+            if (player.lives > 0 && player.x + player.size.width > rock.getX() && player.x <
+                    rock.getX() + rock.getSize() && player.y + player.size.height >
+                    rock.getY() && player.y < rock.getY() + rock.getSize()) {
+                Utils.missiles.clear();
+                Utils.missiles2.clear();
+                Utils.rocks.clear();
+                player.lives--;
+                if (!Utils.twoPlayers) {
+                    player.x = Utils.frameSize.width / 2 - w / 2;
+                } else {
+                    if (player.lives > 0) player.x = Utils.frameSize.width / 2 - w / 2 + 90;
+                    if (player2.lives > 0) player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
+                }
+
+            }
+
+        }
+        if (Utils.twoPlayers) {
+            for (int i = 0; i < Utils.rocks.size(); i++) {
+                Rock rock = Utils.rocks.get(i);
+                if (player2.lives > 0 && player2.x + player2.size.width > rock.getX() && player2.x < rock.getX() + rock.getSize() && player2.y + player2.size.height >
+                        rock.getY() && player2.y < rock.getY() + rock.getSize()) {
+                    Utils.missiles.clear();
+                    Utils.missiles2.clear();
+                    Utils.rocks.clear();
                     player2.lives--;
                     player.x = Utils.frameSize.width / 2 - w / 2 + 90;
                     player2.x = Utils.frameSize.width / 2 - w / 2 - 90;

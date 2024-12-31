@@ -34,7 +34,7 @@ public class Oponent {
     public void movement() {
         //Shot
         Random rnd = new Random();
-        boolean probably = rnd.nextInt(800) == 0;
+        boolean probably = rnd.nextInt(500) == 0;
         if (probably) {
 
             Oponent randomAlien = Utils.oponents.get(rnd.nextInt(Utils.oponents.size()));

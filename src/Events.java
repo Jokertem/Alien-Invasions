@@ -65,13 +65,14 @@ public class Events implements KeyListener {
                     Utils.missiles.clear();
                     Utils.missiles2.clear();
                     Utils.oponents.clear();
+                    Utils.rocks.clear();
                     Utils.level =0;
                     Utils.changeLVL();
                 }
             }
             case KeyEvent.VK_F2 -> {
                 if (!Utils.start) player.setX(player.getX() + 90);
-                else player2.setX(player.getX());
+                else if (!Utils.twoPlayers)player2.setX(player.getX());
                 Utils.twoPlayers = true;
                 Utils.start = true;
             }
