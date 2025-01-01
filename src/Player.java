@@ -63,6 +63,14 @@ public class Player {
     public void setLives(int lives) {
         this.lives = lives;
     }
+    private int power;
+
+    public int getPower(){
+        return power;
+    }
+    public void setPower(int power){
+        this.power = power;
+    }
 
     private static final int w = 90;
     private static final int h = 20;

@@ -15,7 +15,7 @@ public class Utils {
     public static boolean pauza = false;
     public static boolean gameOver = false;
     public static boolean twoPlayers = false;
-    public static int level = 0;
+    public static int level = 1;
     public static int maxLevel = 5;
     public static float shotDelay = 0.1F;
     public static int rock = 0;
@@ -23,6 +23,7 @@ public class Utils {
 
 
     public static void changeLVL() {
+        oponents.clear();
         missiles.clear();
         missiles2.clear();
         oMissles.clear();
@@ -48,7 +49,7 @@ public class Utils {
             int rows = 5;
 
 
-            for (int i = 1; i < rows + 1; i++) {
+            for (int i = 1; i < rows+1; i++) {
 
                 oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 + 100 - 100 * i,
                         50, Directions.LEFT));
@@ -64,9 +65,28 @@ public class Utils {
 
 
             }
-
+            oponents.removeFirst();
+            oponents.remove(2);
             oponents.add(new Oponent(oponents.getLast().getX(), 150, Directions.UP));
-            oponents.add(new Oponent(oponents.get(18).getX(), 150, Directions.DOWN));
+            oponents.add(new Oponent(oponents.get(16).getX(), 150, Directions.DOWN));
+
+
+        }
+        if (level == 4) {
+            int rows = 4;
+            int columns = 3;
+
+            for (int i = 0; i < columns; i++) {
+                for (int j = 1; j < rows + 1; j++) {
+                    oponents.add(new Oponent(Utils.frameSize.width / 2 - 50 / 2 + 100 - 100 * j, 50 + 100 * i, Directions.DOWN));
+                    oponents.add(new Oponent(Utils.frameSize.width / 2 - 50 / 2 - 100 + 100 * j, 50 + 100 * i, Directions.DOWN));
+
+                }
+            }
+
+            oponents.removeFirst();
+            oponents.remove(15);
+            oponents.remove(7);
 
 
         }

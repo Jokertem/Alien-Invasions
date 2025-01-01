@@ -10,15 +10,15 @@ public class Rock {
 
     private int scoreValue;
 
-    public Rock(int x, int y, int lives, int size,int scoreValue) {
+    public Rock(int x, int y, int lives, int size, int scoreValue) {
         this.x = x;
         this.y = y;
         this.lives = lives;
         this.size = size;
-        this.scoreValue=scoreValue;
+        this.scoreValue = scoreValue;
     }
 
-    private final int speed =9;
+    private final int speed = 9;
 
     public int getX() {
         return x;
@@ -55,21 +55,23 @@ public class Rock {
     public int getSpeed() {
         return speed;
     }
+
     public int getScoreValue() {
         return scoreValue;
     }
 
-    public void movement(){
+    public void movement() {
 
-        if (y+size>Utils.frameSize.height){
+        if (y > Utils.frameSize.height) {
             Random rnd = new Random();
-           x= rnd.nextInt(Utils.frameSize.width);
-           y=0-rnd.nextInt(500);
+            x = rnd.nextInt(Utils.frameSize.width);
+            y = 0 - rnd.nextInt(500);
         }
-        y+= speed;
+        y += speed;
 
     }
-    public ImageIcon getShape(){
+
+    public ImageIcon getShape() {
         return new ImageIcon(getClass().getResource("/Assets/Rock.png"));
     }
 }

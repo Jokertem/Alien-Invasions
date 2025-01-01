@@ -68,7 +68,7 @@ public class PMissile {
                     Utils.missiles.remove(i);
                     Utils.oponents.remove(j);
                     player.setScore(player.getScore() + oponent.getScoreValue());
-
+                    System.out.println(j);
 
                 }
             }

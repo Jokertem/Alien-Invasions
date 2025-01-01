@@ -5,7 +5,8 @@ public class Oponent {
     private int x;
     private int y;
     private Directions move;
-    private  final int scoreValue=5;
+    private final int scoreValue = 5;
+    private final Dimension size = new Dimension(50, 30);
 
     public int getScoreValue() {
         return scoreValue;
@@ -29,7 +30,6 @@ public class Oponent {
         return size;
     }
 
-    private final Dimension size = new Dimension(50, 30);
 
     public void movement() {
         //Shot
@@ -55,6 +55,11 @@ public class Oponent {
                 if (x >= Utils.frameSize.width / 2 - 50 / 2 - 100 + 100 * 5 && y >= 250) move = Directions.UP;
                 if (x >= Utils.frameSize.width / 2 - 50 / 2 - 100 + 100 * 5 && y <= 50) move = Directions.LEFT;
 
+            }
+            case 4 -> {
+                if (y <= 50) Utils.oponents.forEach(oponent -> oponent.move = Directions.DOWN);
+                if (y + size.height >= Utils.frameSize.height - 150)
+                    Utils.oponents.forEach(oponent -> oponent.move = Directions.UP);
             }
         }
 

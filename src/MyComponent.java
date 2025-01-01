@@ -63,8 +63,9 @@ public class MyComponent extends JComponent {
 
 
                     }
+
+                    if (Utils.rock >= 10) Utils.changeLVL();
                     if (Utils.level == 3) {
-                        if (Utils.rock >= 10) Utils.level++;
                         if (Utils.rocks.size() < Utils.rockMax) {
                             int size = rnd.nextInt(4);
                             switch (size) {
@@ -73,9 +74,6 @@ public class MyComponent extends JComponent {
                                 case 3 -> Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 8, 162,30 ));
 
                             }
-
-
-
 
 
                         }
