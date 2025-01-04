@@ -45,13 +45,16 @@ public class MyComponent extends JComponent {
                     }
                     PMissile.movement();
                     PMissile.collisons();
-                    OMissle.drop();
+                    for (int i = 0; i <Utils.oMissles.size() ; i++) {
+                     OMissle oMissle = Utils.oMissles.get(i);
+                     oMissle.drop(i);
+                    }
                     for (int i = 0; i < Utils.powerUps.size(); i++) {
                         PowerUp powerUp = Utils.powerUps.get(i);
                         powerUp.movement(i);
                     }
                     if (Utils.powerUps.size() < 2) {
-                        boolean probably = rnd.nextInt(100) == 0;
+                        boolean probably = rnd.nextInt(300) == 0;
                         if (probably) Utils.powerUps.add(new PowerUp(rnd.nextInt(Utils.frameSize.width), 0));
                     }
 

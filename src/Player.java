@@ -118,6 +118,7 @@ public class Player {
                 Utils.oMissles.clear();
                 player.lives--;
                 player.power = 1;
+                Boss.laser = false;
                 if (!Utils.twoPlayers) {
                     player.x = Utils.frameSize.width / 2 - w / 2;
                 } else {
@@ -139,6 +140,7 @@ public class Player {
                     player2.power = 1;
                     player.x = Utils.frameSize.width / 2 - w / 2 + 90;
                     player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
+                    Boss.laser = false;
 
 
                 }

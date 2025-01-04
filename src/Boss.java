@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 
 public class Boss extends Oponent {
 
@@ -9,7 +11,7 @@ public class Boss extends Oponent {
     public Boss(int x, int y, Directions move) {
         super(x, y, move);
         setSize(new Dimension(150, 90));
-        this.lives = 5;
+        this.lives = 30;
 
 
     }
@@ -26,6 +28,8 @@ public class Boss extends Oponent {
     public Directions getMove() {
         return move;
     }
+
+    public static boolean laser = false;
 
     @Override
     public void movement() {
@@ -63,12 +67,21 @@ public class Boss extends Oponent {
                 }
             }
         }
+        Random rnd = new Random();
+
+        //Laser
+        boolean laserProbably = rnd.nextInt(250) == 0;
+        if (laserProbably && !checkLaser()) {
+            laser = true;
+            Utils.oMissles.add(new Laser(x + 150 / 2 - 75 / 2, y + getSize().height + 10));
+
+        }
 
 
         //Shot
-        Random rnd = new Random();
-        boolean probably = rnd.nextInt(10) == 0;
-        if (probably) {
+        boolean probably = rnd.nextInt(15) == 0;
+        if (probably && !laser) {
+
             for (int i = 0; i < 4; i++) {
                 OMissle oMissle = new OMissle(x + getSize().width / 2 - 10 / 2 - 50 + 30 * i, y + getSize().height + 10);
                 Utils.oMissles.add(oMissle);
@@ -76,11 +89,18 @@ public class Boss extends Oponent {
         }
 
 
-        if (x < 0) Utils.oponents.getFirst().move = Directions.RIGHT;
-        if (x +
+        if (x < 0) {
+            Utils.oponents.getFirst().move = Directions.RIGHT;
+            laser = false;
+            if (Utils.oMissles.size() != 0) Utils.oMissles.removeFirst();
 
-                getSize().width > Utils.frameSize.width)
+        }
+        if (x + getSize().width > Utils.frameSize.width) {
             Utils.oponents.getFirst().move = Directions.LEFT;
+            laser = false;
+            if (Utils.oMissles.size() != 0) Utils.oMissles.removeFirst();
+
+        }
 
 
         int speed = 5;
@@ -94,5 +114,15 @@ public class Boss extends Oponent {
             case DOWN -> y += speed;
 
         }
+    }
+
+    public boolean checkLaser() {
+        AtomicBoolean find = new AtomicBoolean(false);
+        Utils.oMissles.forEach(oMissle -> {
+            if (oMissle instanceof Laser) {
+                find.set(true);
+            }
+        });
+        return find.get();
     }
 }

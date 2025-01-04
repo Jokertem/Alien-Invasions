@@ -2,10 +2,10 @@ import java.awt.*;
 
 
 public class PMissile {
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
     private final int speed = 15;
-    private final Dimension size = new Dimension(10, 30);
+    protected Dimension size = new Dimension(10, 30);
     private static final Player player = Player.getPlayer();
     private static final Player player2 = Player.getPlayer2();
 

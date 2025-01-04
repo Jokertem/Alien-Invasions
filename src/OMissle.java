@@ -1,8 +1,6 @@
 import java.awt.*;
 
 public class OMissle extends PMissile {
-    private int x;
-    private int y;
 
     public OMissle(int x, int y) {
         super(x, y);
@@ -18,16 +16,18 @@ public class OMissle extends PMissile {
         return super.getSize();
     }
 
-    public static void drop() {
-        for (int i = 0; i < Utils.oMissles.size(); i++) {
-            OMissle oMissile = Utils.oMissles.get(i);
-            if (oMissile.getY() + oMissile.getSize().height > Utils.frameSize.height) {
-                Utils.oMissles.remove(i);
+    public void setSize(Dimension size) {
+        this.size = size;
+    }
 
-            }
-            oMissile.setY(oMissile.getY() + oMissile.getSpeed());
+    public void drop(int index) {
 
+        if (y + size.height > Utils.frameSize.height) {
+            Utils.oMissles.remove(index);
         }
+        y += 10;
+
+
     }
 
     public static void getShape(Graphics2D graphics2D) {

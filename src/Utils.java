@@ -17,7 +17,7 @@ public class Utils {
     public static boolean pauza = false;
     public static boolean gameOver = false;
     public static boolean twoPlayers = false;
-    public static int level = 4;
+    public static int level = 0;
     public static int maxLevel = 5;
     public static float shotDelay = 0.1F;
     public static int rock = 0;
