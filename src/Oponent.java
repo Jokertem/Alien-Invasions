@@ -2,11 +2,13 @@ import java.awt.*;
 import java.util.Random;
 
 public class Oponent {
-    private int x;
-    private int y;
-    private Directions move;
+    protected int x;
+    protected int y;
+    protected Directions move;
     private final int scoreValue = 5;
-    private final Dimension size = new Dimension(50, 30);
+    private Dimension size = new Dimension(50, 30);
+    Player player = Player.getPlayer();
+    Player player2 = Player.getPlayer2();
 
     public int getScoreValue() {
         return scoreValue;
@@ -30,13 +32,48 @@ public class Oponent {
         return size;
     }
 
+    public void setSize(Dimension size) {
+        this.size = size;
+    }
+
+    public int getLives() {
+        return -1;
+    }
 
     public void movement() {
+
+        //Collisions with player missiles
+        for (int i = 0; i < Utils.missiles.size(); i++) {
+            PMissile missile = Utils.missiles.get(i);
+            for (int j = 0; j < Utils.oponents.size(); j++) {
+                Oponent oponent = Utils.oponents.get(j);
+
+                if (missile.getX() + missile.getSize().width > oponent.getX() && missile.getX() < oponent.getX() + oponent.getSize().width && missile.getY() + missile.getSize().height > oponent.getY() && missile.getY() < oponent.getY() + oponent.getSize().height) {
+                    Utils.missiles.remove(i);
+                    Utils.oponents.remove(j);
+                    player.setScore(player.getScore() + oponent.getScoreValue());
+
+                }
+            }
+        }
+        for (int i = 0; i < Utils.missiles2.size(); i++) {
+            PMissile missile = Utils.missiles2.get(i);
+            for (int j = 0; j < Utils.oponents.size(); j++) {
+                Oponent oponent = Utils.oponents.get(j);
+                if (missile.getX() + missile.getSize().width > oponent.getX() && missile.getX() < oponent.getX() + oponent.getSize().width && missile.getY() + missile.getSize().height > oponent.getY() && missile.getY() < oponent.getY() + oponent.getSize().height) {
+                    Utils.missiles2.remove(i);
+                    Utils.oponents.remove(j);
+                    player2.setScore(player2.getScore() + oponent.getScoreValue());
+
+
+                }
+            }
+        }
+
         //Shot
         Random rnd = new Random();
-        boolean probably = rnd.nextInt(500) == 0;
+        boolean probably = rnd.nextInt(70) == 0;
         if (probably) {
-
             Oponent randomAlien = Utils.oponents.get(rnd.nextInt(Utils.oponents.size()));
             OMissle oMissle = new OMissle(randomAlien.getX() + randomAlien.getSize().width / 2, randomAlien.y);
             Utils.oMissles.add(oMissle);
@@ -61,6 +98,7 @@ public class Oponent {
                 if (y + size.height >= Utils.frameSize.height - 150)
                     Utils.oponents.forEach(oponent -> oponent.move = Directions.UP);
             }
+
         }
 
         int speed = 5;

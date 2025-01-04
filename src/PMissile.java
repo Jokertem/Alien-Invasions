@@ -60,32 +60,6 @@ public class PMissile {
 
     public static void collisons() {
 
-        for (int i = 0; i < Utils.missiles.size(); i++) {
-            PMissile missile = Utils.missiles.get(i);
-            for (int j = 0; j < Utils.oponents.size(); j++) {
-                Oponent oponent = Utils.oponents.get(j);
-                if (missile.x + missile.size.width > oponent.getX() && missile.x < oponent.getX() + oponent.getSize().width && missile.y + missile.size.height > oponent.getY() && missile.y < oponent.getY() + oponent.getSize().height) {
-                    Utils.missiles.remove(i);
-                    Utils.oponents.remove(j);
-                    player.setScore(player.getScore() + oponent.getScoreValue());
-                    System.out.println(j);
-
-                }
-            }
-        }
-        for (int i = 0; i < Utils.missiles2.size(); i++) {
-            PMissile missile = Utils.missiles2.get(i);
-            for (int j = 0; j < Utils.oponents.size(); j++) {
-                Oponent oponent = Utils.oponents.get(j);
-                if (missile.x + missile.size.width > oponent.getX() && missile.x < oponent.getX() + oponent.getSize().width && missile.y + missile.size.height > oponent.getY() && missile.y < oponent.getY() + oponent.getSize().height) {
-                    Utils.missiles2.remove(i);
-                    Utils.oponents.remove(j);
-                    player2.setScore(player2.getScore() + oponent.getScoreValue());
-
-
-                }
-            }
-        }
 
         for (int i = 0; i < Utils.missiles.size(); i++) {
             PMissile missile = Utils.missiles.get(i);

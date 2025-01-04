@@ -110,7 +110,7 @@ public class Player {
         //Colisions with oponent missles
         for (int i = 0; i < Utils.oMissles.size(); i++) {
             OMissle oMissle = Utils.oMissles.get(i);
-            if (player.x + player.size.width > oMissle.getX() && player.x <
+            if (player.getLives() > 0 && player.x + player.size.width > oMissle.getX() && player.x <
                     oMissle.getX() + oMissle.getSize().width && player.y + player.size.height >
                     oMissle.getY() && player.y < oMissle.getY() + oMissle.getSize().height) {
                 Utils.missiles.clear();
@@ -130,7 +130,7 @@ public class Player {
         if (Utils.twoPlayers) {
             for (int i = 0; i < Utils.oMissles.size(); i++) {
                 OMissle oMissle = Utils.oMissles.get(i);
-                if (player2.x + player2.size.width > oMissle.getX() && player2.x < oMissle.getX() + oMissle.getSize().width && player2.y + player2.size.height >
+                if (player2.getLives() > 0 && player2.x + player2.size.width > oMissle.getX() && player2.x < oMissle.getX() + oMissle.getSize().width && player2.y + player2.size.height >
                         oMissle.getY() && player2.y < oMissle.getY() + oMissle.getSize().height) {
                     Utils.missiles.clear();
                     Utils.missiles2.clear();

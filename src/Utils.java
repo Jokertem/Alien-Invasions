@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Utils {
@@ -16,7 +17,7 @@ public class Utils {
     public static boolean pauza = false;
     public static boolean gameOver = false;
     public static boolean twoPlayers = false;
-    public static int level = 0;
+    public static int level = 4;
     public static int maxLevel = 5;
     public static float shotDelay = 0.1F;
     public static int rock = 0;
@@ -50,7 +51,7 @@ public class Utils {
             int rows = 5;
 
 
-            for (int i = 1; i < rows+1; i++) {
+            for (int i = 1; i < rows + 1; i++) {
 
                 oponents.add(new Oponent(frameSize.width / 2 - 50 / 2 + 100 - 100 * i,
                         50, Directions.LEFT));
@@ -91,7 +92,14 @@ public class Utils {
 
 
         }
+        if (level == 5) {
+            Random rnd = new Random();
+            Directions directions;
+            if (rnd.nextInt(2) == 0) directions = Directions.LEFT;
+            else directions = Directions.RIGHT;
+            oponents.add(new Boss(Utils.frameSize.width / 2 - 150 / 2, 50, Directions.RIGHT));
 
+        }
 
         if (level > maxLevel) level = 1;
     }

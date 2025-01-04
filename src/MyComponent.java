@@ -62,6 +62,7 @@ public class MyComponent extends JComponent {
                         Oponent oponent = Utils.oponents.get(j);
                         oponent.movement();
                     }
+
                     if (!Utils.twoPlayers) {
                         if (player.getLives() <= 0) Utils.gameOver = true;
 
