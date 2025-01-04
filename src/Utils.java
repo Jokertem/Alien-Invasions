@@ -11,11 +11,12 @@ public class Utils {
     public static ArrayList<OMissle> oMissles = new ArrayList<>();
     public static ArrayList<Oponent> oponents = new ArrayList<>();
     public static ArrayList<Rock> rocks = new ArrayList<>();
+    public static ArrayList<PowerUp> powerUps = new ArrayList<>();
     public static boolean start = false;
     public static boolean pauza = false;
     public static boolean gameOver = false;
     public static boolean twoPlayers = false;
-    public static int level = 1;
+    public static int level = 0;
     public static int maxLevel = 5;
     public static float shotDelay = 0.1F;
     public static int rock = 0;

@@ -31,9 +31,38 @@ public class Events implements KeyListener {
             case KeyEvent.VK_ENTER -> {
                 if (!Utils.pauza) {
                     if (player.getShot() <= 0) {
-                        PMissile pMissile = new PMissile(player.getX() + player.size.width / 2, player.getY() - player.size.height);
-                        Utils.missiles.add(pMissile);
+                        switch (player.getPower()) {
+                            case 1 -> {
+
+                                PMissile pMissile = new PMissile(player.getX() + player.size.width / 2 - 10 / 2, player.getY() - player.size.height);
+                                Utils.missiles.add(pMissile);
+
+                            }
+                            case 2 -> {
+
+                                PMissile pMissile = new PMissile(player.getX() + player.size.width / 2 - 10 / 2 - 25, player.getY() - player.size.height);
+                                PMissile pMissile2 = new PMissile(player.getX() + player.size.width / 2 - 10 / 2 + 25, player.getY() - player.size.height);
+                                Utils.missiles.add(pMissile);
+                                Utils.missiles.add(pMissile2);
+
+                            }
+                            case 3 -> {
+                                PMissile pMissile = new PMissile(player.getX() + player.size.width / 2 - 10 / 2, player.getY() - player.size.height + 40);
+                                PMissile pMissile2 = new PMissile(player.getX() + player.size.width / 2 - 10 / 2 - 30, player.getY() - player.size.height);
+                                PMissile pMissile3 = new PMissile(player.getX() + player.size.width / 2 - 10 / 2 + 30, player.getY() - player.size.height);
+                                Utils.missiles.add(pMissile);
+                                Utils.missiles.add(pMissile2);
+                                Utils.missiles.add(pMissile3);
+                            }
+                            case 4 -> {
+                                for (int i = 0; i < 4; i++) {
+                                    PMissile pMissile = new PMissile(player.getX() + player.size.width / 2 - 10 / 2 - 50 + 30 * i, player.getY());
+                                    Utils.missiles.add(pMissile);
+                                }
+                            }
+                        }
                         player.setShot(Utils.shotDelay);
+
 
                     }
                 }
@@ -41,8 +70,37 @@ public class Events implements KeyListener {
             case KeyEvent.VK_SPACE -> {
                 if (!Utils.pauza && Utils.twoPlayers) {
                     if (player2.getShot() <= 0) {
-                        PMissile pMissile = new PMissile(player2.getX() + player2.size.width / 2, player2.getY() - player2.size.height);
-                        Utils.missiles2.add(pMissile);
+                        switch (player2.getPower()) {
+                            case 1 -> {
+
+                                PMissile pMissile = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2, player2.getY() - player2.size.height);
+                                Utils.missiles2.add(pMissile);
+
+                            }
+                            case 2 -> {
+
+                                PMissile pMissile = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2 - 25, player2.getY() - player2.size.height);
+                                PMissile pMissile2 = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2 + 25, player2.getY() - player2.size.height);
+                                Utils.missiles2.add(pMissile);
+                                Utils.missiles2.add(pMissile2);
+
+                            }
+                            case 3 -> {
+                                PMissile pMissile = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2, player2.getY() - player2.size.height + 40);
+                                PMissile pMissile2 = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2 - 30, player2.getY() - player2.size.height);
+                                PMissile pMissile3 = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2 + 30, player2.getY() - player2.size.height);
+                                Utils.missiles2.add(pMissile);
+                                Utils.missiles2.add(pMissile2);
+                                Utils.missiles2.add(pMissile3);
+                            }
+                            case 4 -> {
+                                for (int i = 0; i < 4; i++) {
+                                    PMissile pMissile = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2 - 50 + 30 * i, player2.getY());
+                                    Utils.missiles2.add(pMissile);
+                                }
+                            }
+
+                        }
                         player2.setShot(Utils.shotDelay);
 
 
@@ -50,29 +108,32 @@ public class Events implements KeyListener {
                 }
             }
             case KeyEvent.VK_F1 -> {
-                if (!Utils.gameOver) Utils.start =true;
+                if (!Utils.gameOver) Utils.start = true;
                 else {
                     Utils.gameOver = false;
-                    if (!Utils.twoPlayers) player.setX(Utils.frameSize.width/2-player.size.width/2);
+                    if (!Utils.twoPlayers) player.setX(Utils.frameSize.width / 2 - player.size.width / 2);
                     else {
-                        player.setX(Utils.frameSize.width/2-player.size.width/2+90);
-                        player2.setX(Utils.frameSize.width/2-player.size.width/2-90);
+                        player.setX(Utils.frameSize.width / 2 - player.size.width / 2 + 90);
+                        player2.setX(Utils.frameSize.width / 2 - player.size.width / 2 - 90);
                     }
                     player.setLives(3);
                     player2.setLives(3);
                     player.setScore(0);
                     player2.setScore(0);
+                    player.setPower(1);
+                    player2.setPower(1);
                     Utils.missiles.clear();
                     Utils.missiles2.clear();
                     Utils.oponents.clear();
                     Utils.rocks.clear();
-                    Utils.level =0;
+                    Utils.powerUps.clear();
+                    Utils.level = 0;
                     Utils.changeLVL();
                 }
             }
             case KeyEvent.VK_F2 -> {
                 if (!Utils.start) player.setX(player.getX() + 90);
-                else if (!Utils.twoPlayers)player2.setX(player.getX());
+                else if (!Utils.twoPlayers) player2.setX(player.getX());
                 Utils.twoPlayers = true;
                 Utils.start = true;
             }

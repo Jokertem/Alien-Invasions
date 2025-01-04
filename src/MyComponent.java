@@ -46,6 +46,15 @@ public class MyComponent extends JComponent {
                     PMissile.movement();
                     PMissile.collisons();
                     OMissle.drop();
+                    for (int i = 0; i < Utils.powerUps.size(); i++) {
+                        PowerUp powerUp = Utils.powerUps.get(i);
+                        powerUp.movement(i);
+                    }
+                    if (Utils.powerUps.size() < 2) {
+                        boolean probably = rnd.nextInt(100) == 0;
+                        if (probably) Utils.powerUps.add(new PowerUp(rnd.nextInt(Utils.frameSize.width), 0));
+                    }
+
                     Utils.rocks.forEach(Rock::movement);
                     if (Utils.start && Utils.oponents.isEmpty() && Utils.level != 3) Utils.changeLVL();
 
@@ -69,9 +78,12 @@ public class MyComponent extends JComponent {
                         if (Utils.rocks.size() < Utils.rockMax) {
                             int size = rnd.nextInt(4);
                             switch (size) {
-                                case 1 -> Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 3, 64,10 ));
-                                case 2 -> Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 5, 128,20 ));
-                                case 3 -> Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 8, 162,30 ));
+                                case 1 ->
+                                        Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 3, 64, 10));
+                                case 2 ->
+                                        Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 5, 128, 20));
+                                case 3 ->
+                                        Utils.rocks.add(new Rock(rnd.nextInt(Utils.frameSize.width), 0 - rnd.nextInt(500), 8, 162, 30));
 
                             }
 
@@ -111,9 +123,11 @@ public class MyComponent extends JComponent {
             int textWidth = metrics.stringWidth(pl1Score);
             graphics2D.drawString(pl1Score, Utils.frameSize.width - 50 - textWidth, Utils.frameSize.height - 90);
             graphics2D.setPaint(Color.RED);
-            Utils.rocks.forEach(rock ->{graphics2D.drawImage(rock.getShape().getImage(),rock.getX()
-                    ,rock.getY(),rock.getX()+rock.getSize(),
-                    rock.getY()+rock.getSize(),30,250,250,500,null);});
+            Utils.rocks.forEach(rock -> {
+                graphics2D.drawImage(rock.getShape().getImage(), rock.getX()
+                        , rock.getY(), rock.getX() + rock.getSize(),
+                        rock.getY() + rock.getSize(), 30, 250, 250, 500, null);
+            });
 
             heart.draw(graphics2D);
             for (Oponent oponent : Utils.oponents) graphics2D.fill(oponent.getShape());
@@ -126,6 +140,8 @@ public class MyComponent extends JComponent {
                 graphics2D.drawString(pl2Score, 50, Utils.frameSize.height - 90);
 
             }
+            graphics2D.setPaint(Color.GREEN);
+            Utils.powerUps.forEach(powerUp -> graphics2D.fill(powerUp.getShape()));
 
         } else if (!Utils.start) {
             graphics2D.setPaint(Color.white);
