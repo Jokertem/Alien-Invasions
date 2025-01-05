@@ -7,12 +7,12 @@ public class Boss extends Oponent {
 
 
     private int lives;
+    public static boolean laser;
 
     public Boss(int x, int y, Directions move) {
         super(x, y, move);
         setSize(new Dimension(150, 90));
         this.lives = 80;
-
 
     }
 
@@ -29,7 +29,6 @@ public class Boss extends Oponent {
         return move;
     }
 
-    public static boolean laser = false;
 
     @Override
     public void movement() {

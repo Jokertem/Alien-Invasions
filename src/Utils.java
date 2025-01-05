@@ -31,6 +31,7 @@ public class Utils {
         oMissles.clear();
         rocks.clear();
         rock = 0;
+        Boss.laser =false;
         level++;
         if (level > maxLevel) level = 1;
 
@@ -97,7 +98,7 @@ public class Utils {
             Directions directions;
             if (rnd.nextInt(2) == 0) directions = Directions.LEFT;
             else directions = Directions.RIGHT;
-            oponents.add(new Boss(Utils.frameSize.width / 2 - 150 / 2, 50, Directions.RIGHT));
+            oponents.add(new Boss(Utils.frameSize.width / 2 - 150 / 2, 50, directions));
 
         }
 
