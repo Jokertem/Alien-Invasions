@@ -55,10 +55,16 @@ public class Events implements KeyListener {
                                 Utils.missiles.add(pMissile3);
                             }
                             case 4 -> {
-                                for (int i = 0; i < 4; i++) {
-                                    PMissile pMissile = new PMissile(player.getX() + player.size.width / 2 - 10 / 2 - 50 + 30 * i, player.getY());
+
+                                    PMissile pMissile = new PMissile(player.getX() + player.size.width / 2 - 10 / 2-40, player.getY());
+                                    PMissile pMissile2 = new PMissile(player.getX() + player.size.width / 2 - 10 / 2-15, player.getY());
+                                    PMissile pMissile3 = new PMissile(player.getX() + player.size.width / 2 - 10 / 2+15, player.getY());
+                                    PMissile pMissile4 = new PMissile(player.getX() + player.size.width / 2 - 10 / 2+40, player.getY());
                                     Utils.missiles.add(pMissile);
-                                }
+                                    Utils.missiles.add(pMissile2);
+                                    Utils.missiles.add(pMissile3);
+                                    Utils.missiles.add(pMissile4);
+
                             }
                         }
                         player.setShot(Utils.shotDelay);
@@ -95,7 +101,7 @@ public class Events implements KeyListener {
                             }
                             case 4 -> {
                                 for (int i = 0; i < 4; i++) {
-                                    PMissile pMissile = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2 - 50 + 30 * i, player2.getY());
+                                    PMissile pMissile = new PMissile(player2.getX() + player2.size.width / 2 - 10 / 2 - 50 + 35 * i, player2.getY());
                                     Utils.missiles2.add(pMissile);
                                 }
                             }

@@ -72,7 +72,7 @@ public class Oponent {
 
         //Shot
         Random rnd = new Random();
-        boolean probably = rnd.nextInt(70) == 0;
+        boolean probably = rnd.nextInt(90) == 0;
         if (probably) {
             Oponent randomAlien = Utils.oponents.get(rnd.nextInt(Utils.oponents.size()));
             OMissle oMissle = new OMissle(randomAlien.getX() + randomAlien.getSize().width / 2, randomAlien.y);

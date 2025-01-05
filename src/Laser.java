@@ -10,7 +10,9 @@ public class Laser extends OMissle{
     @Override
     public void drop(int index) {
         Oponent boss = Utils.oponents.getFirst();
-        x = boss.getX()+boss.getSize().width/2-75/2;
-        setSize(new Dimension(75,getSize().height+5));
+        x = boss.getX()+boss.getSize().width/2-75/2+4;
+        setSize(new Dimension(76,getSize().height+5));
     }
+
+
 }

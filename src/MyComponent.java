@@ -45,9 +45,9 @@ public class MyComponent extends JComponent {
                     }
                     PMissile.movement();
                     PMissile.collisons();
-                    for (int i = 0; i <Utils.oMissles.size() ; i++) {
-                     OMissle oMissle = Utils.oMissles.get(i);
-                     oMissle.drop(i);
+                    for (int i = 0; i < Utils.oMissles.size(); i++) {
+                        OMissle oMissle = Utils.oMissles.get(i);
+                        oMissle.drop(i);
                     }
                     for (int i = 0; i < Utils.powerUps.size(); i++) {
                         PowerUp powerUp = Utils.powerUps.get(i);
@@ -59,7 +59,13 @@ public class MyComponent extends JComponent {
                     }
 
                     Utils.rocks.forEach(Rock::movement);
-                    if (Utils.start && Utils.oponents.isEmpty() && Utils.level != 3) Utils.changeLVL();
+                    if (Utils.start && Utils.oponents.isEmpty() && Utils.level != 3) {
+                        Utils.oMissles.clear();
+                        Utils.oponents.clear();
+                        Utils.changeLVL();
+
+
+                    }
 
                     for (int j = 0; j < Utils.oponents.size(); j++) {
                         Oponent oponent = Utils.oponents.get(j);

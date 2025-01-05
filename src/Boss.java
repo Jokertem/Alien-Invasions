@@ -11,7 +11,7 @@ public class Boss extends Oponent {
     public Boss(int x, int y, Directions move) {
         super(x, y, move);
         setSize(new Dimension(150, 90));
-        this.lives = 30;
+        this.lives = 80;
 
 
     }
@@ -42,8 +42,8 @@ public class Boss extends Oponent {
                 if (missile.getX() + missile.getSize().width > oponent.getX() && missile.getX() < oponent.getX() + oponent.getSize().width && missile.getY() + missile.getSize().height > oponent.getY() && missile.getY() < oponent.getY() + oponent.getSize().height) {
                     Utils.missiles.remove(i);
                     lives--;
-                    player.setScore(player.getScore() + oponent.getScoreValue());
                     if (lives <= 0) {
+                        Utils.oMissles.clear();
                         Utils.oponents.remove(j);
                         player.setScore(player.getScore() + 50);
                     }
@@ -59,6 +59,7 @@ public class Boss extends Oponent {
                     lives--;
                     player2.setScore(player2.getScore() + oponent.getScoreValue());
                     if (lives <= 0) {
+                        Utils.oMissles.clear();
                         Utils.oponents.remove(j);
                         player2.setScore(player.getScore() + 50);
 
@@ -73,7 +74,9 @@ public class Boss extends Oponent {
         boolean laserProbably = rnd.nextInt(250) == 0;
         if (laserProbably && !checkLaser()) {
             laser = true;
-            Utils.oMissles.add(new Laser(x + 150 / 2 - 75 / 2, y + getSize().height + 10));
+            Utils.oMissles.add(new Laser(x + getSize().width / 2-76/2+4, y + getSize().height + 10));
+
+
 
         }
 
@@ -82,23 +85,31 @@ public class Boss extends Oponent {
         boolean probably = rnd.nextInt(15) == 0;
         if (probably && !laser) {
 
-            for (int i = 0; i < 4; i++) {
-                OMissle oMissle = new OMissle(x + getSize().width / 2 - 10 / 2 - 50 + 30 * i, y + getSize().height + 10);
-                Utils.oMissles.add(oMissle);
-            }
+
+            OMissle oMissle1 = new OMissle(x + getSize().width / 2 - 10 / 2 -60, y + getSize().height + 10);
+            OMissle oMissle2 = new OMissle(x + getSize().width / 2 - 10 /2 -30 , y + getSize().height + 10);
+            OMissle oMissle3 = new OMissle(x + getSize().width / 2 - 10 / 2+30 , y + getSize().height + 10);
+            OMissle oMissle4 = new OMissle(x + getSize().width / 2 - 10 / 2+60 , y + getSize().height + 10);
+            OMissle oMissle5 = new OMissle(x + getSize().width / 2 - 10 / 2, y + getSize().height + 10);
+            Utils.oMissles.add(oMissle1);
+            Utils.oMissles.add(oMissle2);
+            Utils.oMissles.add(oMissle3);
+            Utils.oMissles.add(oMissle4);
+            Utils.oMissles.add(oMissle5);
+
         }
 
 
         if (x < 0) {
             Utils.oponents.getFirst().move = Directions.RIGHT;
             laser = false;
-            if (Utils.oMissles.size() != 0) Utils.oMissles.removeFirst();
+            if (Utils.oMissles.size() != 0) Utils.oMissles.removeLast();
 
         }
         if (x + getSize().width > Utils.frameSize.width) {
             Utils.oponents.getFirst().move = Directions.LEFT;
             laser = false;
-            if (Utils.oMissles.size() != 0) Utils.oMissles.removeFirst();
+            if (Utils.oMissles.size() != 0) Utils.oMissles.removeLast();
 
         }
 

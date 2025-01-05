@@ -18,7 +18,7 @@ public class Rock {
         this.scoreValue = scoreValue;
     }
 
-    private final int speed = 9;
+    private final int speed = 11;
 
     public int getX() {
         return x;
