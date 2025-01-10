@@ -44,14 +44,14 @@ public class PMissile {
 
         for (int i = 0; i < Utils.missiles.size(); i++) {
             PMissile pMissile = Utils.missiles.get(i);
-            if (pMissile.y < 0) Utils.missiles.remove(i);
+            //if (pMissile.y < 0) Utils.missiles.remove(i);
             pMissile.y -= pMissile.speed;
 
 
         }
         for (int i = 0; i < Utils.missiles2.size(); i++) {
             PMissile pMissile = Utils.missiles2.get(i);
-            if (pMissile.y < 0) Utils.missiles2.remove(i);
+            //if (pMissile.y < 0) Utils.missiles2.remove(i);
             pMissile.y -= pMissile.speed;
 
 

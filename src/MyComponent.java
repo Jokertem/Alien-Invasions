@@ -73,10 +73,19 @@ public class MyComponent extends JComponent {
                     }
 
                     if (!Utils.twoPlayers) {
-                        if (player.getLives() <= 0) Utils.gameOver = true;
+                        if (player.getLives() <= 0) {
+
+                            Utils.missiles.clear();
+                            Utils.missiles2.clear();
+                        Utils.gameOver = true;
+                        }
 
                     } else {
-                        if (player.getLives() <= 0 && player2.getLives() <= 0) Utils.gameOver = true;
+                        if (player.getLives() <= 0 && player2.getLives() <= 0) {
+                        Utils.missiles.clear();
+                        Utils.missiles2.clear();
+                        Utils.gameOver = true;
+                        }
                         if (player.getLives() <= 0) player.setX(Utils.frameSize.width + 10000);
                         if (player2.getLives() <= 0) player2.setX(Utils.frameSize.width + 10000);
 

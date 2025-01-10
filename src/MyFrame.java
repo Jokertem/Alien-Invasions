@@ -9,7 +9,6 @@ public class MyFrame extends JFrame {
         setBounds(screenSize.width / 2 - Utils.frameSize.width / 2, screenSize.height / 2 - Utils.frameSize.height / 2, Utils.frameSize.width, Utils.frameSize.height);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
         MyComponent component = new MyComponent();
         add(component);
@@ -20,7 +19,6 @@ public class MyFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-
         MyFrame frame = new MyFrame();
         frame.setVisible(true);
 
