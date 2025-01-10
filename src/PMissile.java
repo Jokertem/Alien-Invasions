@@ -51,7 +51,7 @@ public class PMissile {
         }
         for (int i = 0; i < Utils.missiles2.size(); i++) {
             PMissile pMissile = Utils.missiles2.get(i);
-            //if (pMissile.y < 0) Utils.missiles2.remove(i);
+           // if (pMissile.y < 0) Utils.missiles2.remove(i);
             pMissile.y -= pMissile.speed;
 
 
@@ -69,7 +69,7 @@ public class PMissile {
                     Utils.missiles.remove(i);
                     rock.setLives(rock.getLives() - 1);
                     if (rock.getLives() <= 0) {
-                        Utils.rocks.remove(j);
+                        //Utils.rocks.remove(j);
                         player.setScore(player.getScore() + 20);
                         Utils.rock++;
 
