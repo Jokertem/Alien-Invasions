@@ -41,7 +41,7 @@ public class PowerUp {
     public void movement(int index) {
         if (y > Utils.frameSize.height) Utils.powerUps.remove(index);
 
-        if (x + size > player.getX() && x < player.getX() + player.size.width && y + size >
+        if (player.getLives()>0 && x + size > player.getX() && x < player.getX() + player.size.width && y + size >
                 player.getY() && y
                 < player.getY() + player.size.height) {
             Utils.powerUps.remove(index);
@@ -49,7 +49,7 @@ public class PowerUp {
             player.setScore(player.getScore() + 30);
         }
 
-        if (Utils.twoPlayers && x + size > player2.getX() && x < player2.getX() + player2.size.width && y + size >
+        if (Utils.twoPlayers && player2.getLives()>0 && x + size > player2.getX() && x < player2.getX() + player2.size.width && y + size >
                 player2.getY() && y
                 < player2.getY() + player2.size.height) {
             Utils.powerUps.remove(index);

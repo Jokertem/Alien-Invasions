@@ -157,6 +157,7 @@ public class Player {
                 Utils.missiles2.clear();
                 Utils.rocks.clear();
                 player.lives--;
+                player.power=1;
                 if (!Utils.twoPlayers) {
                     player.x = Utils.frameSize.width / 2 - w / 2;
                 } else {
@@ -176,6 +177,7 @@ public class Player {
                     Utils.missiles2.clear();
                     Utils.rocks.clear();
                     player2.lives--;
+                    player2.power=1;
                     player.x = Utils.frameSize.width / 2 - w / 2 + 90;
                     player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
 

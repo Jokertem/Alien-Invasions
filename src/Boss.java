@@ -60,7 +60,7 @@ public class Boss extends Oponent {
                     if (lives <= 0) {
                         Utils.oMissles.clear();
                         Utils.oponents.remove(j);
-                        player2.setScore(player.getScore() + 50);
+                        player2.setScore(player2.getScore() + 50);
 
                     }
 

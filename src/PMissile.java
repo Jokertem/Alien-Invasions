@@ -69,7 +69,7 @@ public class PMissile {
                     Utils.missiles.remove(i);
                     rock.setLives(rock.getLives() - 1);
                     if (rock.getLives() <= 0) {
-                        //Utils.rocks.remove(j);
+                        Utils.rocks.remove(j);
                         player.setScore(player.getScore() + 20);
                         Utils.rock++;
 
