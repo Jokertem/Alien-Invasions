@@ -31,7 +31,7 @@ public class Utils {
         oMissles.clear();
         rocks.clear();
         rock = 0;
-        Boss.laser =false;
+        Boss.laser = false;
         level++;
         if (level > maxLevel) level = 1;
 

@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,16 +12,17 @@ public class MyComponent extends JComponent {
     private final Player player = Player.getPlayer();
     private final Player player2 = Player.getPlayer2();
     private final Heart heart = new Heart();
+    private final ImageIcon BackGround = new ImageIcon(getClass().getResource("/Assets/BackGround.png"));
 
 
     public MyComponent() {
         int starsCount = 15;
-        for (int i = 0; i < starsCount; i++) {
-            int randomX = rnd.nextInt(Utils.frameSize.width);
-            int randomY = rnd.nextInt(Utils.frameSize.height);
-            stars.add(new Star(randomX, randomY));
-
-        }
+//        for (int i = 0; i < starsCount; i++) {
+//            int randomX = rnd.nextInt(Utils.frameSize.width);
+//            int randomY = rnd.nextInt(Utils.frameSize.height);
+//            stars.add(new Star(randomX, randomY));
+//
+//        }
         Timer delay = new Timer(200, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,7 +40,7 @@ public class MyComponent extends JComponent {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!Utils.pauza) {
-                    Star.updatePoss(stars);
+                    //Star.updatePoss(stars);
                     if (Utils.start) {
                         player.movement();
                         if (Utils.twoPlayers) player2.movement();
@@ -77,14 +79,14 @@ public class MyComponent extends JComponent {
 
                             Utils.missiles.clear();
                             Utils.missiles2.clear();
-                        Utils.gameOver = true;
+                            Utils.gameOver = true;
                         }
 
                     } else {
                         if (player.getLives() <= 0 && player2.getLives() <= 0) {
-                        Utils.missiles.clear();
-                        Utils.missiles2.clear();
-                        Utils.gameOver = true;
+                            Utils.missiles.clear();
+                            Utils.missiles2.clear();
+                            Utils.gameOver = true;
                         }
                         if (player.getLives() <= 0) player.setX(Utils.frameSize.width + 10000);
                         if (player2.getLives() <= 0) player2.setX(Utils.frameSize.width + 10000);
@@ -126,12 +128,13 @@ public class MyComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         Toolkit.getDefaultToolkit().sync();
         Graphics2D graphics2D = (Graphics2D) g;
+        graphics2D.drawImage(BackGround.getImage(), 0, 0, Utils.frameSize.width, Utils.frameSize.height, null);
         if (Utils.start && !Utils.gameOver) {
             graphics2D.setPaint(Color.WHITE);
-            Star.getShape(stars, graphics2D);
+            //Star.getShape(stars, graphics2D);
             graphics2D.setPaint(Color.GREEN);
             PMissile.getShape(graphics2D);
-            graphics2D.fill(player.getShape());
+            graphics2D.drawImage(player.getShape().getImage(), player.getX(), player.getY(), player.size.width, player.size.height, null);
 
             graphics2D.setPaint(Color.blue);
             Font font = new Font("Arial", Font.PLAIN, 18);
@@ -149,12 +152,13 @@ public class MyComponent extends JComponent {
             });
 
             heart.draw(graphics2D);
-            for (Oponent oponent : Utils.oponents) graphics2D.fill(oponent.getShape());
+            for (Oponent oponent : Utils.oponents)
+                graphics2D.drawImage(oponent.getShape().getImage(), oponent.getX(), oponent.getY(), oponent.size.width, oponent.size.height, null);
             graphics2D.setPaint((Color.RED));
             OMissle.getShape(graphics2D);
             if (Utils.twoPlayers) {
                 graphics2D.setPaint(Color.YELLOW);
-                graphics2D.fill(player2.getShape());
+                graphics2D.drawImage(player2.getShape().getImage(), player2.getX(), player2.getY(), player2.size.width, player2.size.height, null);
                 graphics2D.setPaint(Color.BLUE);
                 graphics2D.drawString(pl2Score, 50, Utils.frameSize.height - 90);
 
@@ -164,7 +168,7 @@ public class MyComponent extends JComponent {
 
         } else if (!Utils.start) {
             graphics2D.setPaint(Color.white);
-            Star.getShape(stars, graphics2D);
+            //Star.getShape(stars, graphics2D);
             graphics2D.setPaint(Color.BLUE);
             Font font = new Font("Arial", Font.PLAIN, 25);
             String text = "Press F1 to start one Player";
@@ -181,7 +185,7 @@ public class MyComponent extends JComponent {
             graphics2D.drawString(text3, Utils.frameSize.width / 2 - text3Width / 2, Utils.frameSize.height / 2 + 60);
         } else if (Utils.gameOver) {
             graphics2D.setPaint(Color.WHITE);
-            Star.getShape(stars, graphics2D);
+            //Star.getShape(stars, graphics2D);
             Font font = new Font("Arial", Font.PLAIN, 25);
             graphics2D.setFont(font);
             graphics2D.setPaint(Color.BLUE);

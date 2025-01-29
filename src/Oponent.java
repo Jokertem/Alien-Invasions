@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
@@ -6,7 +7,7 @@ public class Oponent {
     protected int y;
     protected Directions move;
     private final int scoreValue = 5;
-    private Dimension size = new Dimension(50, 30);
+    public Dimension size = new Dimension(80, 60);
     Player player = Player.getPlayer();
     Player player2 = Player.getPlayer2();
 
@@ -72,8 +73,8 @@ public class Oponent {
 
         //Shot
         Random rnd = new Random();
-        boolean probably = rnd.nextInt(90) == 0;
-        if (probably && Utils.oponents.size() >=1) {
+        boolean probably = rnd.nextInt(160) == 0;
+        if (probably && Utils.oponents.size() >= 1) {
             Oponent randomAlien = Utils.oponents.get(rnd.nextInt(Utils.oponents.size()));
             OMissle oMissle = new OMissle(randomAlien.getX() + randomAlien.getSize().width / 2, randomAlien.y);
             Utils.oMissles.add(oMissle);
@@ -114,8 +115,8 @@ public class Oponent {
         }
     }
 
-    public Rectangle getShape() {
+    public ImageIcon getShape() {
 
-        return new Rectangle(x, y, size.width, size.height);
+        return new ImageIcon(getClass().getResource("/Assets/AlienShip.png"));
     }
 }

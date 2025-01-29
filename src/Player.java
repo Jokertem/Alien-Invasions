@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 
 public class Player {
@@ -75,7 +76,7 @@ public class Player {
     }
 
     private static final int w = 90;
-    private static final int h = 20;
+    private static final int h = 50;
     public Dimension size;
     private static final Player player = new Player(Utils.frameSize.width / 2 - w / 2,
             Utils.frameSize.height - 90 - h);
@@ -157,7 +158,7 @@ public class Player {
                 Utils.missiles2.clear();
                 Utils.rocks.clear();
                 player.lives--;
-                player.power=1;
+                player.power = 1;
                 if (!Utils.twoPlayers) {
                     player.x = Utils.frameSize.width / 2 - w / 2;
                 } else {
@@ -177,7 +178,7 @@ public class Player {
                     Utils.missiles2.clear();
                     Utils.rocks.clear();
                     player2.lives--;
-                    player2.power=1;
+                    player2.power = 1;
                     player.x = Utils.frameSize.width / 2 - w / 2 + 90;
                     player2.x = Utils.frameSize.width / 2 - w / 2 - 90;
 
@@ -189,8 +190,8 @@ public class Player {
     }
 
 
-    public Rectangle getShape() {
-        Point point = new Point(x, y);
-        return new Rectangle(point, size);
+    public ImageIcon getShape() {
+
+        return new ImageIcon(getClass().getResource("/Assets/SpaceShip.png"));
     }
 }

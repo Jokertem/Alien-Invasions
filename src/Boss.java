@@ -11,7 +11,7 @@ public class Boss extends Oponent {
 
     public Boss(int x, int y, Directions move) {
         super(x, y, move);
-        setSize(new Dimension(150, 90));
+        setSize(new Dimension(150, 110));
         this.lives = 80;
 
     }
@@ -73,8 +73,7 @@ public class Boss extends Oponent {
         boolean laserProbably = rnd.nextInt(250) == 0;
         if (laserProbably && !checkLaser()) {
             laser = true;
-            Utils.oMissles.add(new Laser(x + getSize().width / 2-76/2+4, y + getSize().height + 10));
-
+            Utils.oMissles.add(new Laser(x + getSize().width / 2 - 76 / 2 + 4, y + getSize().height + 10));
 
 
         }
@@ -85,10 +84,10 @@ public class Boss extends Oponent {
         if (probably && !laser) {
 
 
-            OMissle oMissle1 = new OMissle(x + getSize().width / 2 - 10 / 2 -60, y + getSize().height + 10);
-            OMissle oMissle2 = new OMissle(x + getSize().width / 2 - 10 /2 -30 , y + getSize().height + 10);
-            OMissle oMissle3 = new OMissle(x + getSize().width / 2 - 10 / 2+30 , y + getSize().height + 10);
-            OMissle oMissle4 = new OMissle(x + getSize().width / 2 - 10 / 2+60 , y + getSize().height + 10);
+            OMissle oMissle1 = new OMissle(x + getSize().width / 2 - 10 / 2 - 60, y + getSize().height + 10);
+            OMissle oMissle2 = new OMissle(x + getSize().width / 2 - 10 / 2 - 30, y + getSize().height + 10);
+            OMissle oMissle3 = new OMissle(x + getSize().width / 2 - 10 / 2 + 30, y + getSize().height + 10);
+            OMissle oMissle4 = new OMissle(x + getSize().width / 2 - 10 / 2 + 60, y + getSize().height + 10);
             OMissle oMissle5 = new OMissle(x + getSize().width / 2 - 10 / 2, y + getSize().height + 10);
             Utils.oMissles.add(oMissle1);
             Utils.oMissles.add(oMissle2);
